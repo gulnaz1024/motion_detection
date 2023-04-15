@@ -1,34 +1,41 @@
 import cv2
 
-built_in_cam_capture = cv2.VideoCapture(1)
+laptop_cam_capture = cv2.VideoCapture(1)
+laptop_cam_frame_width = int(laptop_cam_capture.get(3))
+laptop_cam_frame_height = int(laptop_cam_capture.get(4))
+laptop_cam_switcher = 1
+laptop_cam_off = cv2.imread('built-in.jpg')
+out_laptop_cam = cv2.VideoWriter('Laptop_camera.mp4', cv2.VideoWriter_fourcc(*'XVID'), 28, (laptop_cam_frame_width, laptop_cam_frame_height))
+
 USB_cam_capture = cv2.VideoCapture(0)
-
-built_in_cam_switcher = 1
+USB_cam_frame_width = int(laptop_cam_capture.get(3))
+USB_cam_frame_height = int(laptop_cam_capture.get(4))
 USB_cam_switcher = 1
-
-built_in_cam_off = cv2.imread('built-in.jpg')
 USB_cam_off = cv2.imread('usb.jpg')
+out_USB_cam = cv2.VideoWriter('USB_camera.mp4', cv2.VideoWriter_fourcc(*'XVID'), 25, (USB_cam_frame_width, USB_cam_frame_height))
 
 while True:
     # Capture frame-by-frame
-    has_frame_built_in_cam, frame_built_in_cam = built_in_cam_capture.read()
+    has_frame_laptop_cam, frame_laptop_cam = laptop_cam_capture.read()
     has_frame_USB_cam, frame_USB_cam = USB_cam_capture.read()    
 
     # Built-in Camera (Switcher key - 1) 
-    if has_frame_built_in_cam and built_in_cam_switcher % 2 == 1:
-        cv2.imshow('Built-in Cam', frame_built_in_cam)
+    if has_frame_laptop_cam and laptop_cam_switcher % 2 == 1:
+        cv2.imshow('Built-in Cam', frame_laptop_cam)
+        out_laptop_cam.write(frame_laptop_cam)
     else:
-        cv2.imshow('Built-in Cam', built_in_cam_off)
+        cv2.imshow('Built-in Cam', laptop_cam_off)
 
     # USB Camera (Switcher key - 2) 
     if has_frame_USB_cam and USB_cam_switcher % 2 == 1:
         cv2.imshow('USB Cam', frame_USB_cam)
+        out_USB_cam.write(frame_USB_cam)
     else:
         cv2.imshow('USB Cam', USB_cam_off)
 
     key = cv2.waitKey(1)
     if key == ord('1'):
-        built_in_cam_switcher += 1
+        laptop_cam_switcher += 1
     elif key == ord('2'):
         USB_cam_switcher += 1
     elif key == ord('R') or key == ord('r'):
@@ -38,5 +45,7 @@ while True:
 
 # When everything is done, release the capture
 USB_cam_capture.release()
-built_in_cam_capture.release()
+laptop_cam_capture.release()
+out_laptop_cam.release()
+out_USB_cam.release()
 cv2.destroyAllWindows()
