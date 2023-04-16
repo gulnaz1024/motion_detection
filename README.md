@@ -5,8 +5,7 @@ by Gimaletdinova Gulnaz (MAT-20)
 Detects motion on any cameras, without connecting additional sensors, by using computer vision.  When motion is detected on any camera, it automatically starts recording on that camera. It is also possible to enable/disable the recording by pressing the button (each camera has its own recording button). The cameras can be turned on/off by pressing a button (each camera has its own power button).
 
 <p align="center">
-  <img src="img/mask.gif" width="320" />
-  <img src="img/original.gif" width="320" /> 
+  <img src="img/demo.gif" width="650" />
 </p>
 
 ## 🏃 Getting Started
