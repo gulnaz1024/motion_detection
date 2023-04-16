@@ -84,7 +84,7 @@ laptop_cam_frame_width = int(laptop_cam_capture.get(3))
 laptop_cam_frame_height = int(laptop_cam_capture.get(4))
 laptop_cam_switcher = 1
 laptop_cam_recording_switcher = 0
-laptop_cam_off = cv2.imread('laptop-off.jpg')
+laptop_cam_off = cv2.imread('img/laptop-off.jpg')
 out_laptop_cam = cv2.VideoWriter('Laptop_camera.mp4', cv2.VideoWriter_fourcc(*'XVID'), 28, (laptop_cam_frame_width, laptop_cam_frame_height))
 
 USB_cam_capture = cv2.VideoCapture(0)
@@ -92,7 +92,7 @@ USB_cam_frame_width = int(laptop_cam_capture.get(3))
 USB_cam_frame_height = int(laptop_cam_capture.get(4))
 USB_cam_switcher = 1
 USB_cam_recording_switcher = 0
-USB_cam_off = cv2.imread('usb-off.jpg')
+USB_cam_off = cv2.imread('img/usb-off.jpg')
 out_USB_cam = cv2.VideoWriter('USB_camera.mp4', cv2.VideoWriter_fourcc(*'XVID'), 25, (USB_cam_frame_width, USB_cam_frame_height))
 
 # Create the MOG2 background subtractor object
