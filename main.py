@@ -13,7 +13,7 @@ def frame_preprocessing(frame):
 
     return fgmask3
 
-def laptop_cam(frame_laptop_cam):
+def detect_laptop_cam_motion(frame_laptop_cam):
     fgmask_laptop_cam = frame_preprocessing(frame_laptop_cam)  
     contours_laptop_cam, hierarchy = cv2.findContours(fgmask_laptop_cam, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
 
@@ -46,7 +46,7 @@ def laptop_cam(frame_laptop_cam):
     else:
         cv2.imshow('Laptop Cam', laptop_cam_off)
 
-def USB_cam(frame_USB_cam):
+def detect_USB_cam_motion(frame_USB_cam):
     fgmask_USB_cam = frame_preprocessing(frame_USB_cam)  
     contours_USB_cam, hierarchy = cv2.findContours(fgmask_USB_cam, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
 
@@ -104,10 +104,10 @@ while True:
     has_frame_USB_cam, frame_USB_cam = USB_cam_capture.read()  
 
     # Laptop Camera (Switcher key - 1, Record key - L)
-    laptop_cam(frame_laptop_cam)
+    detect_laptop_cam_motion(frame_laptop_cam)
 
     # USB Camera (Switcher key - 2, Record key - R) 
-    USB_cam(frame_USB_cam)
+    detect_USB_cam_motion(frame_USB_cam)
 
     key = cv2.waitKey(1)
     if key == ord('1'):
@@ -118,7 +118,7 @@ while True:
         laptop_cam_recording_switcher += 1
     elif key == ord('U') or key == ord('u'):
         USB_cam_recording_switcher += 1
-    elif key == ord('q'):
+    elif key == ord('Q') or key == ord('q'):
         break    
 
 # When everything is done, release the capture
