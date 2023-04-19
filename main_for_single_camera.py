@@ -38,8 +38,7 @@ def detect_cam_motion(frame):
 
     if has_frame and cam_switcher % 2 == 1:        
         if cam_recording_switcher % 2 == 1:              
-            cv2.putText(frame, "Recording in progress", (20, 40), cv2.FONT_HERSHEY_SIMPLEX, 0.8, (0, 0, 255), 2)       
-            cv2.imshow('Laptop Cam', frame)
+            cv2.putText(frame, "Recording in progress", (20, 40), cv2.FONT_HERSHEY_SIMPLEX, 0.8, (0, 0, 255), 2)
             out.write(frame)
         else:
             cv2.imshow('Laptop Cam', frame)
