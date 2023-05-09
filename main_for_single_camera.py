@@ -52,7 +52,6 @@ cam_switcher = 1
 cam_recording_switcher = 0
 cam_off = cv2.imread('img/laptop-off.jpg')
 out = cv2.VideoWriter('Laptop_camera.mp4', cv2.VideoWriter_fourcc(*'XVID'), 28, (cam_frame_width, cam_frame_height))
-out2 = cv2.VideoWriter('Laptop_camera2.mp4', cv2.VideoWriter_fourcc(*'XVID'), 28, (cam_frame_width, cam_frame_height))
 
 # Create the MOG2 background subtractor object
 mog = cv2.createBackgroundSubtractorMOG2()
